@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton, Show, UserButton } from '@clerk/nextjs'
 
-export default function Home() {
+export default function DashboardPage() {
   return (
     <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
       <h1 className="text-2xl font-bold">Welcome to your app</h1>
@@ -18,7 +18,6 @@ export default function Home() {
       <Show when="signed-in">
         <div className="flex items-center gap-4">
           <span>You are signed in!</span>
-          <UserButton />
         </div>
       </Show>
     </div>
