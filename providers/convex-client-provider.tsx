@@ -2,8 +2,14 @@
 
 import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
-import { ConvexReactClient } from "convex/react";
+import { 
+  AuthLoading, 
+  Authenticated, 
+  Unauthenticated, 
+  ConvexReactClient 
+} from "convex/react";
 import { shadcn } from "@clerk/ui/themes";
+import { Loading } from "@/components/auth/loading";
 
 interface ConvexClientProviderProps {
   children: React.ReactNode;
@@ -19,7 +25,15 @@ export const ConvexClientProvider = ({
   return (
     <ClerkProvider appearance={{ theme: shadcn }}>
       <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
-        {children}
+        <AuthLoading>
+          <Loading />
+        </AuthLoading>
+        <Authenticated>
+          {children}
+        </Authenticated>
+        <Unauthenticated>
+          {children}
+        </Unauthenticated>
       </ConvexProviderWithClerk>
     </ClerkProvider>
   );
